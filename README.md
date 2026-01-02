@@ -1,4 +1,4 @@
-# 🚀 Agente de Validação Automática de Deploy
+#  Agente de Validação Automática de Deploy
 
 Este projeto é um script em Python desenvolvido para atuar como um filtro de segurança antes de um deploy. Ele analisa logs e relatórios para garantir que nenhum erro crítico passe despercebido.
 
@@ -6,7 +6,7 @@ A ideia principal é automatizar a revisão de arquivos de saída, verificando p
 
 ---
 
-## 📁 Estrutura do Projeto
+##  Estrutura do Projeto
 
 Estrutura simples e direta:
 
@@ -18,7 +18,7 @@ Estrutura simples e direta:
 
 ---
 
-## 🛠️ Critérios de Validação
+##  Critérios de Validação
 
 O agente realiza três validações principais:
 
@@ -36,7 +36,7 @@ O agente realiza três validações principais:
 
 ---
 
-## ▶️ Como Executar os Testes
+##  Como Executar os Testes
 
 1. Cenário de Sucesso (Deploy Aprovado)
 
@@ -52,7 +52,7 @@ O agente realiza três validações principais:
 
 ---
 
-## 📄 Requisitos do Log
+##  Requisitos do Log
 
 Para que o deploy seja aprovado, o arquivo de log deve conter obrigatoriamente as seguintes chaves:
 
