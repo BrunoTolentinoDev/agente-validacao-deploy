@@ -1,26 +1,61 @@
-Agente de Validação de Deploy 🚀
-Este projeto nasceu da necessidade de automatizar aquela conferência chata (e arriscada) que fazemos antes de subir um código para produção. Em vez de ler logs gigantes manualmente, criei este script em Python que faz o trabalho sujo de procurar erros e validar variáveis essenciais.
+# 🚀 Agente de Validação Automática de Deploy
 
- O que ele faz na prática?
-O script funciona como um "filtro" de segurança. Ele lê um arquivo de log (que você indica no terminal) e verifica:
+Este projeto é um script em Python desenvolvido para atuar como um filtro de segurança antes de um deploy. Ele analisa logs e relatórios para garantir que nenhum erro crítico passe despercebido.
 
-Erros Críticos: Se encontrar palavras como ERROR ou FAIL, ele trava tudo na hora.
+A ideia principal é automatizar a revisão de arquivos de saída, verificando padrões de erro e a presença de variáveis obrigatórias, indicando de forma clara se o deploy pode seguir ou deve ser bloqueado.
 
-Configurações: Ele checa se as variáveis obrigatórias (como chaves de API e URLs de banco de dados) estão presentes.
+---
 
-Resultado: No fim, ele te dá um relatório visual: Aprovado ou Bloqueado.
+## 📁 Estrutura do Projeto
 
- Como testar?
-Deixei uma pasta chamada tests/ com três cenários reais para você testar como o agente se comporta:
+Estrutura simples e direta:
 
-Cenário de Sucesso: python deploy_agent.py tests/sucesso.log
+- tests/
+  - sucesso.log
+  - erro_critico.log
+  - dados_incompletos.log
+- deploy_agent.py -> código principal do agente
 
-Cenário de Erro Crítico: python deploy_agent.py tests/erro_critico.log
+---
 
-Cenário de Dados Incompletos: python deploy_agent.py tests/dados_incompletos.log
+## 🛠️ Critérios de Validação
 
- Tecnologias
-Python 3
+O agente realiza três validações principais:
 
-Manipulação de arquivos e lógica de automação.
+1. Erros Críticos  
+   Varredura no log em busca de termos como ERROR, FATAL, EXCEPTION ou FAILED.
 
+2. Variáveis Obrigatórias  
+   Verifica se as seguintes variáveis estão presentes no log:
+   - DATABASE_URL
+   - SECRET_KEY
+   - API_KEY
+
+3. Decisão Automática  
+   Caso qualquer critério falhe, o deploy é automaticamente bloqueado.
+
+---
+
+## ▶️ Como Executar os Testes
+
+1. Cenário de Sucesso (Deploy Aprovado)
+
+   python deploy_agent.py tests/sucesso.log
+
+2. Cenário de Erro Crítico (Deploy Bloqueado)
+
+   python deploy_agent.py tests/erro_critico.log
+
+3. Cenário de Dados Incompletos (Deploy Bloqueado)
+
+   python deploy_agent.py tests/dados_incompletos.log
+
+---
+
+## 📄 Requisitos do Log
+
+Para que o deploy seja aprovado, o arquivo de log deve conter obrigatoriamente as seguintes chaves:
+
+- DATABASE_URL
+- SECRET_KEY
+- API_KEY
